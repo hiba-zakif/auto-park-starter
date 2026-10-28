@@ -59,8 +59,7 @@
           <div class="form-grid">
             <div class="field">
               <label for="marque"
-                >Marque <span aria-hidden="true">*</span></label
-              >
+                >Marque <span aria-hidden="true">*</span></label>
               <input
                 id="marque"
                 name="marque"
@@ -160,12 +159,14 @@
               role="status"
               aria-live="polite"
             ></p>
+                                                        
             <div class="form-actions">
               <!-- Retirer hidden en JavaScript pendant une modification. -->
               <button
                 id="annuler-modification"
                 class="button button-secondary"
                 type="button"
+                onclick="()=>{supprimer()}"
                 hidden
               >
                 Annuler la modification
