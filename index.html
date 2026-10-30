@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Tailwind</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-[#f4f6fa]">
+    <header class="bg-white">
+      <div class=" p-4 flex justify-evenly items-center">
+        <a
+          class="flex items-center gap-4"
+          href="voitures.html"
+          aria-label="AutoPark — Gestion du parc"
+        >
+          <span class="bg-sky-500 rounded-xl p-4 text-white font-bold" aria-hidden="true">A<span class="text-[#c4d2ff]">.</span></span>
+          <span class="font-bold ">AutoPark<small class="block text-[#627184] ">ATLAS AUTO</small></span>
+        </a>
+        <nav class="flex items-center gap-4">
+          <!-- index.html est le dashboard à créer par l'apprenant. -->
+          <a href="index.html" class="text-[#2449b5] bg-[#ecf1ff]  p-2 rounded-md font-medium">Dashboard</a>
+          <a href="voitures.html" aria-current="page" class="text-[#627184] hover:bg-[#f2f5fb] hover:text-[#18283b] p-2 rounded-md font-medium">Gestion du parc</a>
+        </nav>
+        <span class="agency-label">Agence de location</span>
+      </div>
+    </header>
+    <main class="h-screen pt-[38px] pb-[30px] mx-[100px] ">
+      <section class="mb-8" aria-labelledby="titre-page">
+        <p class="text-[#2855d7] text-[10px] font-black tracking-[1.6px] mb-[8px]">VOTRE ESPACE DE GESTION</p>
+        <h1 id="titre-page" class="mb-3 text-3xl font-bold">Dashbord</h1>
+        <p class="text-[#627184] text-sm">Suivez l'état de votre parc automobile en un coup d'œil.</p>
+      </section>
+      <section class="flex justify-between gap-8"> 
+        <div class="bg-white py-8 px-12 rounded-xl flex-col w-xs ">
+          <p class="mb-2">total des vehicules</p>
+          <span class="text-blue py-12 font-bold text-3xl">0</span>
+          <p class="mt-2">vehicules enregistres</p>
+        </div>
+        <div class="bg-white py-8 px-12 rounded-xl flex-col w-xs">
+          <p class=" mb-2">Disponible</p>
+          <span class="   font-bold text-3xl">0</span>
+          <p class=" mt-2 ">Pret à la location</p>
+        </div>
+        <div class="bg-white py-8 px-12 rounded-xl w-xs">
+          <p class="mb-2">Louées</p>
+          <span class=" py-12 font-bold text-3xl">0</span>
+          <p class="mt-2">En cours de location</p>
+        </div>
+        <div class="bg-white py-8 px-12 rounded-xl w-xs">
+          <p class="mb-2">Louées</p>
+          <span class=" py-12 font-bold text-3xl">0</span>
+          <p class="mt-2">En cours de location</p>
+        </div>
+      </section>
+    </main>
+  
+</body>
+</html>

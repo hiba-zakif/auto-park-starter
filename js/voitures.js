@@ -282,13 +282,14 @@ function supprimer (id , tab){
         return
     }
     const index = voitures_storage.findIndex(e=>e.id == id);
-    tab = tab.filter((e)=>e.id == id);
+    
     
     voitures_storage.splice(index,1);
     localStorage.setItem("voitures" , JSON.stringify(voitures_storage));
     if(tab == undefined){
         afficher();
     }else{
+        tab = tab.filter((e)=>e.id != id);
         afficher(tab)
     }
     
