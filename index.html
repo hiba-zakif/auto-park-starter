@@ -5,11 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Test Tailwind</title>
+  <script type="module" src="./js/dashboard.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body class="bg-[#f4f6fa]">
-    <header class="bg-white">
-      <div class=" p-4 flex justify-evenly items-center">
+
+    <header class="bg-white w-full">
+      <div class=" p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 items-center justify-between">
         <a
           class="flex items-center gap-4"
           href="voitures.html"
@@ -21,39 +23,78 @@
         <nav class="flex items-center gap-4">
           <!-- index.html est le dashboard à créer par l'apprenant. -->
           <a href="index.html" class="text-[#2449b5] bg-[#ecf1ff]  p-2 rounded-md font-medium">Dashboard</a>
-          <a href="voitures.html" aria-current="page" class="text-[#627184] hover:bg-[#f2f5fb] hover:text-[#18283b] p-2 rounded-md font-medium">Gestion du parc</a>
+          <a href="voitures.html" target="_self" aria-current="page" class="text-[#627184] hover:bg-[#f2f5fb] hover:text-[#18283b] p-2 rounded-md font-medium">Gestion du parc</a>
         </nav>
-        <span class="agency-label">Agence de location</span>
+        <span class="agency-label hidden lg:block text-[#627184] size-xs">Agence de location</span>
       </div>
     </header>
-    <main class="h-screen pt-[38px] pb-[30px] mx-[100px] ">
+
+    <main class="h-screen pt-[38px] pb-[30px] mx-[2rem] md:w-[calc(100% - 32px)] xl:w-[1240px]">
+
       <section class="mb-8" aria-labelledby="titre-page">
         <p class="text-[#2855d7] text-[10px] font-black tracking-[1.6px] mb-[8px]">VOTRE ESPACE DE GESTION</p>
         <h1 id="titre-page" class="mb-3 text-3xl font-bold">Dashbord</h1>
         <p class="text-[#627184] text-sm">Suivez l'état de votre parc automobile en un coup d'œil.</p>
       </section>
-      <section class="flex justify-between gap-8"> 
-        <div class="bg-white py-8 px-12 rounded-xl flex-col w-xs ">
+
+      <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8"> 
+
+        <artice class="bg-white py-8 px-4 rounded-xl border border-gray-300">
           <p class="mb-2">total des vehicules</p>
-          <span class="text-blue py-12 font-bold text-3xl">0</span>
+          <span class="total_vehicules text-[#2853e8] py-12 font-bold text-3xl">0</span>
           <p class="mt-2">vehicules enregistres</p>
-        </div>
-        <div class="bg-white py-8 px-12 rounded-xl flex-col w-xs">
+        </artice>
+
+        <artice class="bg-white py-8 px-4 rounded-xl  border border-gray-300">
           <p class=" mb-2">Disponible</p>
-          <span class="   font-bold text-3xl">0</span>
+          <span class=" vehicules_dispo text-[#16845b] font-bold text-3xl">0</span>
           <p class=" mt-2 ">Pret à la location</p>
-        </div>
-        <div class="bg-white py-8 px-12 rounded-xl w-xs">
+        </artice>
+
+        <artice class="bg-white py-8 px-4 rounded-xl border border-gray-300">
           <p class="mb-2">Louées</p>
-          <span class=" py-12 font-bold text-3xl">0</span>
+          <span class="vehicules_louée text-[#d28a20] py-12 font-bold text-3xl">0</span>
           <p class="mt-2">En cours de location</p>
-        </div>
-        <div class="bg-white py-8 px-12 rounded-xl w-xs">
-          <p class="mb-2">Louées</p>
-          <span class=" py-12 font-bold text-3xl">0</span>
-          <p class="mt-2">En cours de location</p>
-        </div>
+        </artice>
+
+        <artice class="bg-white py-8 px-4 rounded-xl border border-gray-300">
+          <p class="mb-2">En maintenance</p>
+          <span class="vehicules_maintenance text-[#d94355] py-12 font-bold text-3xl">0</span>
+          <p class="mt-2">En cours de maintenance</p>
+        </artice>
+
       </section>
+
+      <section class="mb-8 p-4 bg-white rounded-xl ">
+
+        <div class="section-heading px-[20px] pt-[20px] mb-[24px]  ">
+          <div>
+            <h2 id="titre-inventaire " class="mb-3 text-xl font-bold">Les voitures du parc</h2>
+          </div>
+          <span class="section-note text-[#627184]">Derniers voitures enregistrés</span>
+        </div>
+
+              <div class="overflox-auto">
+                  <table class="w-full">
+                  <caption class="sr-only">
+                    Liste des voitures du parc et actions de gestion
+                  </caption>
+                  <thead class="bg-gray-100 h-12 rounded-xl">
+                    <tr >
+                      <th scope="col" >Marque</th>
+                      <th scope="col">Modèle</th>
+                      <th scope="col">Immatriculation</th>
+                      <th scope="col">Catégorie</th>
+                      <th scope="col">Prix / jour</th>
+                      <th scope="col">Statut</th>
+                    </tr>
+                  </thead>
+                  <tbody id="liste-voitures">
+                  </tbody>
+              </table>
+              </div>
+      </section>
+
     </main>
   
 </body>

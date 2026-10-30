@@ -390,7 +390,8 @@ function chercher(tab){
     if(search.value == ""){
         return tab
     }
-    tab = tab.filter(e=>e.marque == search.value || e.modele == search.value || e.immatriculation == search.value || e.categorie == search.value || e.prix_jour == search.value || e.statut == search.value );
+    
+    tab = tab.filter(e=>e.marque.toLowerCase().trim() == search.value.toLowerCase().trim() || e.modele.toLowerCase().trim() == search.value.toLowerCase().trim() || e.immatriculation.toLowerCase().trim() == search.value.toLowerCase().trim() || e.categorie.toLowerCase().trim() == search.value.toLowerCase().trim() || e.prix_jour == search.value || e.statut.toLowerCase().trim() == search.value.toLowerCase().trim() );
     return tab
 }
 
