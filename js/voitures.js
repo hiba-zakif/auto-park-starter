@@ -321,6 +321,7 @@ function edit (id){
     const index = voitures_storage.findIndex((e)=>e.id == id);
     voitures_storage[index].marque = marque.value ; 
     voitures_storage[index].modele = modele.value ; 
+    voitures_storage[index].prixJour = prix_jour.value ; 
     voitures_storage[index].immatriculation = immatriculation.value ; 
     voitures_storage[index].categorie = categorie.value ; 
     voitures_storage[index].statut = statut.value ; 
