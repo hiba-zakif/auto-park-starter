@@ -229,6 +229,6 @@ Il représente une mise en pratique concrète des compétences acquises durant l
 
 ## 📄 Licence
 
-Projet pédagogique réalisé individuellement dans le cadre de la formation Développeur Web et Web Mobile chez YouCode.
+Projet pédagogique réalisé individuellement dans le cadre de la formation Développeur Web chez YouCode.
 
 © 2026 — Projet Atlas Auto. Tous droits réservés.
