@@ -35,6 +35,10 @@ export const selectedConfig = {
   voitureId: null,
   dateDebut: "",
   dateFin: "",
+  nbrJour : 0,
+  prixTotal : 0,
+  prixJours: 0,
+  prixRecuperation : 0,
   modeRecuperation: "agence",
 
   recuperation: {

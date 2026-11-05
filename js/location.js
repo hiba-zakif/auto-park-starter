@@ -4,11 +4,21 @@ import { config , selectedConfig } from './starter.js';
 const form = document.querySelector("form");
 const modele_marque= document.getElementById("modele_marque");
 const categorie_prix = document.getElementById("categorie_prix");
-const nbrJour = document.getElementById("nbrJour");
+const nbrJour = document.querySelectorAll(".nbrJour");
 const prixJour = document.getElementById('prixJour');
 const prixJours = document.getElementById('prixJours');
 const dateDebut = document.getElementById('dateDebut');
 const dateFin = document.getElementById("dateFin");
+const formDurée = document.getElementById("formDurée");
+const afficheAnnée = document.getElementById("afficheAnnée");
+const afficheMois = document.getElementById("afficheMois");
+const afficheJourFin = document.getElementById("afficheJourFin");
+const afficheJourDebut = document.getElementById("afficheJourDebut");
+const b_recuperation = document.getElementsByClassName("recuperation");
+const prixTotal = document.getElementById("prixTotal");
+
+const tableauJours = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+ 
 
 let voiture_choisis ;
 
@@ -55,22 +65,79 @@ function step1 (){
         input_radio.addEventListener("click", ()=>{
             voiture_choisis = element;
             modele_marque.textContent = `${element.marque} ${element.modele}`;
-            categorie_prix.textContent = `${element.categorie}`;
+            categorie_prix.textContent = `${element.categorie} · ${element.prixJour} MAD / jour`;
             prixJour.textContent = element.prixJour;
+            selectedConfig.prixJours = selectedConfig.nbrJour*voiture_choisis.prixJour ;
+            selectedConfig.prixTotal = selectedConfig.prixJours + selectedConfig.prixRecuperation ;
+            prixJours.textContent = `${selectedConfig.prixJours} MAD`;
+            prixTotal.textContent = selectedConfig.prixTotal;
         })
 
 
     });    
-    let date_active;
-    dateDebut.addEventListener("input",()=>{date_active = true})
-    dateFin.addEventListener("input",()=>{date_active = true})
-    if(date_active){
-        let jours = (dateFin.value - dateDebut.value)/(1000 * 60 * 60 * 24);
-        console.log(jours);
-    }
+
+    //verification et calcule de dates;
+    const now = new Date(); 
+    let addzero = "0";
+
+    const year = now.getFullYear();
+    const month = now.getMonth() < 10 ? addzero + now.getMonth() + 1 : now.getMonth() + 1;
+    const day = now.getDate() < 10 ? addzero + now.getDate()  : now.getDate() ;
+    const nowString = `${year}-${month}-${day}`;
+    
+    dateDebut.setAttribute("min" , nowString);
+
+    dateDebut.addEventListener("change",()=>{
+        dateFin.setAttribute("min" , dateDebut.value);
+        selectedConfig.dateDebut = dateDebut.value;
+
+
+
+        afficheJourDebut.textContent = new Date(dateDebut.value).getDate();       
+        
+
+        if(dateFin.value){
+            calculerJours();
+            
+        }
+
+    })
+
+    dateFin.addEventListener("change",()=>{
+        dateDebut.setAttribute("max" , dateFin.value);
+        selectedConfig.dateFin = dateFin.value;
+        
+        afficheJourFin.textContent = new Date(dateFin.value).getDate();
+        afficheMois.textContent = tableauJours[new Date(dateFin.value).getMonth()] ;
+        afficheAnnée.textContent = new Date(dateFin.value).getFullYear();
+
+        if(dateDebut.value){
+            calculerJours();
+            
+        }
+    })
+ 
     
 }
 step1();
+
+function calculerJours(){
+    let jours = (new Date(selectedConfig.dateFin) - new Date(selectedConfig.dateDebut))/(1000 * 60 * 60 * 24) + 1;
+    selectedConfig.nbrJour = jours;
+
+    formDurée.textContent = `Durée : ${jours} jours. Les dates de début et de fin sont incluses.`;
+    // affiche_durée.textContent = ``
+    nbrJour.forEach(e=>{
+        e.textContent = `${jours}`;
+    })
+    selectedConfig.prixJours = selectedConfig.nbrJour*voiture_choisis.prixJour ;
+    selectedConfig.prixTotal = selectedConfig.prixJours + selectedConfig.prixRecuperation ;
+    prixJours.textContent = `${selectedConfig.prixJours} MAD`;
+    prixTotal.textContent = selectedConfig.prixTotal;
+    
+    
+
+}
 
 
     
