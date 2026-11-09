@@ -5,23 +5,23 @@ import { voituresInitiales } from './data.js';
 
 
 export const config = {
-  voitures: getVoitures(),
+  voitures: JSON.parse(localStorage.getItem("voitures")) || voituresInitiales,
 
   modesRecuperation: [
-    { id: "agence", nom: "Ã€ lâ€™agence", fraisFixes: 0 },
-    { id: "aeroport", nom: "Ã€ lâ€™aÃ©roport", fraisFixes: 150 },
-    { id: "adresse", nom: "Ã€ une adresse", fraisFixes: 100 },
+    { id: "agence", nom: "À l’agence", fraisFixes: 0 },
+    { id: "aeroport", nom: "À l’aéroport", fraisFixes: 150 },
+    { id: "adresse", nom: "À une adresse", fraisFixes: 100 },
   ],
 
-  agences: ["Casablanca â€” Centre-ville", "Rabat â€” Agdal", "Marrakech â€” GuÃ©liz"],
+  agences: ["Casablanca à Centre-ville", "Rabat à Agdal", "Marrakech à Guéliz"],
 
-  aeroports: ["Casablanca â€” Mohammed V", "Rabat â€” SalÃ©", "Marrakech â€” MÃ©nara"],
+  aeroports: ["Casablanca à Mohammed V", "Rabat à Salé", "Marrakech à Ménara"],
 
   options: [
-    { id: "siegeBebe", nom: "SiÃ¨ge bÃ©bÃ©", prixParJour: 30 },
+    { id: "siegeBebe", nom: "Siège bebe", prixParJour: 30 },
     {
       id: "conducteurSupplementaire",
-      nom: "Conducteur supplÃ©mentaire",
+      nom: "Conducteur supplementaire",
       prixParJour: 200,
     },
   ],
@@ -63,10 +63,6 @@ export const selectedConfig = {
 };
 
 
-function getVoitures(){
-    let voitures = JSON.parse(localStorage.getItem("voitures")) || voituresInitiales;
-    return voitures;
-}
 
 /*
  * 3. Ã€ VOUS DE JOUER

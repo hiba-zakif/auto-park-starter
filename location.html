@@ -34,9 +34,9 @@
 
       
       <section class="mb-8" aria-labelledby="titre-page">
-        <p class="text-[#2855d7] text-[10px] font-black tracking-[1.6px] mb-[8px]">VOTRE ESPACE DE GESTION</p>
-        <h1 id="titre-page" class="mb-3 text-3xl font-bold">Dashbord</h1>
-        <p class="text-[#627184] text-sm">Suivez l'état de votre parc automobile en un coup d'œil.</p>
+        <p class="text-[#2855d7] text-[10px] font-black tracking-[1.6px] mb-[8px]">VOTRE LOCATION SUR MESURE</p>
+        <h1 id="titre-page" class="mb-3 text-3xl font-bold">Composez votre location</h1>
+        <p class="text-[#627184] text-sm">Votre voiture, vos dates, vos options. À vous de choisir.</p>
       </section>
 
       
@@ -63,10 +63,11 @@
 
       <section class="mb-8 p-4 grid grid-cols-1 gap-3 lg:grid-cols-3 ">
 
-        <!-- first step -->
+        
         <form class="form-card p-8  bg-white rounded-xl col-span-1 lg:col-span-2  ">
 
-          <div class="step1 hidden">
+          <!-- first step -->
+          <div class="step1">
               <div class="section-heading mb-3">
 
                 <div>
@@ -107,41 +108,26 @@
               </div>  
            </div>
 
-           <div class="step2">
+           <div class="step2 hidden">
               <div class="section-heading mb-3">
 
                 <div>
                   <p class="text-[#2855d7] text-[10px] font-black tracking-[1.6px] mb-[8px]">02 / RÉCUPÉRATION</p>
                   <h2 id="titre-formulaire" class="mt-3 mb-3 text-xl font-bold">Où récupérer votre voiture ?</h2>
                 </div>
-                <span class="text-[#627184] text-sm ">Choisissez le lieu qui vous convient.</span >
+                <p class="text-[#627184] text-sm my-5 ">Choisissez le lieu qui vous convient.</span >
 
               </div>
 
-              <div id="lieu_recuperation" class="grid grid-cols-1 lg:grid-cols-3 gap-3 mb-3">
-                <label for="" class="border-1 border-[#D8E1EF] p-4 rounded-2xl has-checked:bg-[#F8FAFF] has-checked:border-[#2855d7]">
-                  <input type="radio" name="modesRecuperation" id="">
-                  <h4 class="font-bold text-base my-2">À l’agence</h4>
-                  <p class="font-bold text-[#2852E3]">Gratuit</p>
-                </label>
-                <label for="" class="border-1 border-[#D8E1EF] p-4 rounded-2xl has-checked:bg-[#F8FAFF] has-checked:border-[#2855d7]">
-                  <input type="radio" name="modesRecuperation" id="">
-                  <h4 class="font-bold text-base my-2">À l’aéroport</h4>
-                  <p class="font-bold text-[#2852E3]">+150 MAD</p>
-                </label>
-                <label for="" class="border-1 border-[#D8E1EF] p-4 rounded-2xl has-checked:bg-[#F8FAFF] has-checked:border-[#2855d7]">
-                  <input type="radio" name="modesRecuperation" id="">
-                  <h4 class="font-bold text-base my-2">À une adresse</h4>
-                  <p class="font-bold text-[#2852E3]">+100 MAD</p>
-                </label>
+              <div id="lieu_recuperation" class="grid grid-cols-1 lg:grid-cols-3 gap-3 my-5">
               </div>
 
               <hr class="text-[#D8E1EF]">
               <h3 class="font-bold text-base my-4">Informations de récupération</h3>
 
-              <div class="grid mb-3">
+              <div class="informationsRécupération" class="grid mb-3">
 
-                <div id="agence" class="hidden">
+                <div id="agence" class="">
                   <label for="dateDebut">Heure de récupération *</label><br>
                   <input type="time" id="dateDebut" class="border-1 border-[#D8E1EF] rounded-md p-2 w-full" placeholder="10/11/2026">
                 </div>
@@ -167,7 +153,7 @@
 
                 </div>
 
-                <div id="adresse" class="">
+                <div id="adresse" class="hidden">
 
                   <div class="mb-3">
                     <label for="dateDebut">Ville *</label><br>
