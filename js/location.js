@@ -16,11 +16,17 @@ const afficheJourFin = document.getElementById("afficheJourFin");
 const afficheJourDebut = document.getElementById("afficheJourDebut");
 const b_recuperation = document.getElementsByClassName("recuperation");
 const prixTotal = document.getElementById("prixTotal");
+const suivant = document.getElementById("Suivant");
+const recommencer = document.getElementById("Recommencer");
+const lieu_recuperation = document.getElementById('lieu_recuperation');
 
+const steps = ["step1" , "step2" , "step3"];
+let stepIndex = 0 ;
 const tableauJours = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
  
 
 let voiture_choisis ;
+let check = false;
 
 function step1 (){
 
@@ -63,6 +69,7 @@ function step1 (){
         h_prix.textContent = `${element.prixJour} MAD / jour`;
 
         input_radio.addEventListener("click", ()=>{
+            check = true;
             voiture_choisis = element;
             modele_marque.textContent = `${element.marque} ${element.modele}`;
             categorie_prix.textContent = `${element.categorie} · ${element.prixJour} MAD / jour`;
@@ -116,10 +123,55 @@ function step1 (){
             
         }
     })
+
+    suivant.addEventListener("click",()=>{
+        if(check && dateDebut.value && dateFin.value){
+            stepIndex++;
+            afficheSteps();
+        }else{
+            alert("remplire tous les champs!");
+        }
+    })
+
+    recommencer.addEventListener("click",()=>{
+        form.reset();
+        afficheJourDebut.textContent = "jj"
+        afficheJourFin.textContent = "jj";
+        afficheMois.textContent = "mois" ;
+        afficheAnnée.textContent = "année";
+
+        modele_marque.textContent = `Marque modele`;
+        categorie_prix.textContent = `Categorie · 0 MAD / jour`;
+        prixJour.textContent = '0';
+        prixJours.textContent = `0 MAD`;
+        prixTotal.textContent = 850;
+        nbrJour.textContent = 'sdfghjk';
+        
+    })
  
     
 }
-step1();
+
+function afficheSteps(){
+    switch (stepIndex){
+        case 0 :
+            document.querySelector(".step1").classList.remove("hidden");
+            step1();
+            break;
+        case 1 :
+            document.querySelector(".step1").classList.add("hidden");
+            document.querySelector(".step2").classList.remove("hidden");
+            step2();
+            break;
+        case 2 : 
+            document.querySelector(".step2").classList.add("hidden");
+            document.querySelector(".step3").classList.remove("hidden");
+            step3();
+            break;
+    }
+}
+
+afficheSteps();
 
 function calculerJours(){
     let jours = (new Date(selectedConfig.dateFin) - new Date(selectedConfig.dateDebut))/(1000 * 60 * 60 * 24) + 1;
@@ -139,50 +191,48 @@ function calculerJours(){
 
 }
 
+function step2(){
+    let temp;
+    config.modesRecuperation.forEach((element)=>{
+        const label = document.createElement("label");
+        lieu_recuperation.append(label);
+        label.classList.add("border-1","border-[#D8E1EF]","p-4","rounded-2xl","has-checked:bg-[#F8FAFF]","has-checked:border-[#2855d7]");
+        label.setAttribute("for", element.id);
 
-    
-//     const headingSection = document.createElement('div');
-//     form.append(headingSection);
-//     headingSection.classList.add("mb-3");
+        const input = document.createElement("input");
+        label.append(input);
+        input.setAttribute("type","radio");
+        input.setAttribute("name","modesRecuperation");
+        input.setAttribute("id","modesRecuperation");
 
-//     const divHeading = document.createElement('div');
-//     headingSection.append(divHeading);
+        const hquatre = document.createElement("h4");
+        label.append(hquatre);
+        hquatre.textContent = element.nom;
+        hquatre.setAttribute("id","nameModeRecuperation");
+        hquatre.classList.add("font-bold","text-base","my-2");
 
-//     const pHeading = document.createElement('p');
-//     divHeading.append(pHeading);
-//     pHeading.classList.add('text-[#2855d7]','text-[10px]','font-black','tracking-[1.6px]','mb-[8px]');
-//     pHeading.textContent = "01 / VÉHICULE";
+        const p = document.createElement("p");
+        label.append(p);
+        p.textContent = element.nom;
+        p.setAttribute("id","nameModeRecuperation");
+        p.classList.add("font-bold","text-[#2852E3]");
+        
+        input.addEventListener("click",()=>{
+            if(temp == undefined){
+                temp = element.id;
+                document.getElementById(element.id).classList.remove("hidden");
+            }
+            
+            else{
+                document.getElementById(temp).classList.add("hidden");
+                document.getElementById(element.id).classList.remove("hidden");
+                temp = element.id;
+                
 
-//     const hdeux_Heading = document.createElement('h2');
-//     divHeading.append(hdeux_Heading);
-//     hdeux_Heading.classList.add('mt-3','mb-3','text-xl','font-bold');
-//     hdeux_Heading.textContent = "Choisissez votre véhicule";
+            }
+            
+        })
+    })
+}
 
-//     const spanHeading = document.createElement('span');
-//     headingSection.append(spanHeading);
-//     spanHeading.classList.add('text-[#627184]','text-sm');
-//     spanHeading.textContent = "Sélectionnez une voiture disponible et votre période de location.";
-
-//     // le corps du formulaire
-
-
-//     const hr = document.createElement("hr");
-//     form.append(hr);
-//     hr.classList.add("text-[#D8E1EF]");
-
-//     const h_titre = document.createElement("h3");
-//     form.append(h_titre);
-//     h_titre.classList.add("font-bold","text-base","my-4");
-//     h_titre.textContent = "Votre période de location";
-
-//     const div_inputs = document.createElement("div");
-//     form.append(div_inputs);
-//     div_inputs.classList.add("grid","grid-cols-1","lg:grid-cols-2","gap-4","mb-3");
-
-//     const div_dateDebut = document.createElement("div");
-//     div_inputs.append(div_dateDebut);
-
-//     const label_dateDebut = document.createElement("label");
-//     label_dateDebut.textContent = "Date de fin *";
-//     label_dateDebut.setAttribute("for","dateFin");
-//     div_dateDebut.append(label_dateDebut);
+function step3(){}
